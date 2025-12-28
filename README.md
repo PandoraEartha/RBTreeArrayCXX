@@ -1,17 +1,55 @@
+# RBTreeArrayCXX
+Red black tree C++ implementation, tree and nodes are in a continuous memory region thus you can write the whole tree into file/shared_memory or read from file/shared_memory 
+
 # Usage
 
 ```C++
 #include "RBTreeArrayCXX.h"
 
-\\ Allow RBTreeArray16, 32, 64
+// Allow RBTreeArray16, 32, 64
 RBTreeArray16<unsigned,double> tree16;
 RBTreeArray32<std::string,std::vector<double>> tree32;
 RBTreeArray64<std::string,std::pair<std::string,std::vector<double>>> tree64;
 // ...
 ```
 
-# RBTreeArrayCXX
-Red black tree C++ implementation, tree and nodes are in a continuous memory region thus you can write the whole tree into file/shared_memory or read from file/shared_memory  
+# Performance
+<img width="4769" height="2958" alt="RBTreeArrayCXX_PerformanceComparison" src="https://github.com/user-attachments/assets/b7fb972e-9e9b-4721-a380-f382aa2c19da" />
+
+# Public Interface Summary:
+
+## Construction:
+  - Default, sized, initializer_list, copy, and move constructors
+
+## Core Operations:
+Insert(key, value), Insert or update
+Delete(key), Remove by key
+Search(key, value), Lookup value by key
+GetMin/GetMax, Retrieve extreme elements
+GetSmallestGreaterThan/GetBiggestSmallerThan, Neighborhood queries
+
+## Bulk Operations:
+ConditionalDelete, Remove all matching a predicate
+ConditionalDeleteOnce, Remove first match
+Keys()/Values(), Extract all keys/values
+KeysValues(), Extract all pairs
+
+## Memory Management:
+MemoryShrink(), Shrink to fit current size
+ReSize(newSize), Resize capacity
+Clear(), Remove all elements (keeps memory)
+Data(), Get raw C-style pointer to underlying structure
+ByteSize(), Get total memory footprint
+
+## Tree Operations:
+SetTree(), Replace with external tree (take ownership)
+SetTreeWithoutDestroyMyTree(), Replace without destroying current
+Transform(), Convert between different bit-length variants
+
+## Iterators:
+begin()/end(), Unordered iterators (fast traversal)
+OrderedBegin()/OrderedEnd(), Key-ordered iterators
+Range-based for loop support (C++17), Unordered, fast traversal
 
 # Public Interface Details:
 
