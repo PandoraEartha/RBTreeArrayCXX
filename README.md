@@ -1,5 +1,7 @@
 # RBTreeArrayCXX
-Red black tree C++ implementation, tree and nodes are in a continuous memory region thus you can write the whole tree into file/shared_memory or read from file/shared_memory 
+Red black tree C++ implementation, tree and nodes are in a continuous memory region thus you can write the whole tree into file/shared_memory or read from file/shared_memory
+
+The algorithm is from [RBTreeArray](https://github.com/PandoraEartha/RBTreeArray)
 
 # Usage
 
