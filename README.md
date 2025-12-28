@@ -23,32 +23,47 @@ RBTreeArray64<std::string,std::pair<std::string,std::vector<double>>> tree64;
 
 ## Core Operations:
 Insert(key, value), Insert or update
+
 Delete(key), Remove by key
+
 Search(key, value), Lookup value by key
+
 GetMin/GetMax, Retrieve extreme elements
+
 GetSmallestGreaterThan/GetBiggestSmallerThan, Neighborhood queries
 
 ## Bulk Operations:
 ConditionalDelete, Remove all matching a predicate
+
 ConditionalDeleteOnce, Remove first match
+
 Keys()/Values(), Extract all keys/values
+
 KeysValues(), Extract all pairs
 
 ## Memory Management:
 MemoryShrink(), Shrink to fit current size
+
 ReSize(newSize), Resize capacity
+
 Clear(), Remove all elements (keeps memory)
+
 Data(), Get raw C-style pointer to underlying structure
+
 ByteSize(), Get total memory footprint
 
 ## Tree Operations:
 SetTree(), Replace with external tree (take ownership)
+
 SetTreeWithoutDestroyMyTree(), Replace without destroying current
+
 Transform(), Convert between different bit-length variants
 
 ## Iterators:
 begin()/end(), Unordered iterators (fast traversal)
+
 OrderedBegin()/OrderedEnd(), Key-ordered iterators
+
 Range-based for loop support (C++17), Unordered, fast traversal
 
 # Public Interface Details:
