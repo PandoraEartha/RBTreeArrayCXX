@@ -321,7 +321,7 @@ Iterator of the array order, this kind of traversal is much faster but unordered
 ### `UnorderedIterator begin();`
 Return UnorderedIterator at the begin of UnorderedIterator
 
-### `UnorderedIterator end();  
+### `UnorderedIterator end();`
 Return UnorderedIterator at the end of UnorderedIterator
 
 ### Usage example: 
