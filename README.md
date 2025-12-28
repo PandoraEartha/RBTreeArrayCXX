@@ -18,6 +18,15 @@ RBTreeArray64<std::string,std::pair<std::string,std::vector<double>>> tree64;
 # Performance
 <img width="4769" height="2958" alt="RBTreeArrayCXX_PerformanceComparison" src="https://github.com/user-attachments/assets/b7fb972e-9e9b-4721-a380-f382aa2c19da" />
 
+# Capacity Limits:
+Three variants with different capacity limits:
+
+`RBTreeArray16`: up to $65535$ key-value pairs
+
+`RBTreeArray32`: up to $4294967295$ key-value pairs
+
+`RBTreeArray64`: up to $18446744073709551615$ key-value pairs
+
 # Public Interface Summary:
 
 ## Construction:
