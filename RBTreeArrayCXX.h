@@ -1789,6 +1789,9 @@ inline bool RBTreeArray<KeyType,ValueType,IndexType,BitLength>::SetTree(RBTree* 
 	if(another->bitLength!=bitLength){
 		return false;
 	}
+	if(another==tree){
+		return false;
+	}
 	this->~RBTreeArray();
 	tree=another;
 	return true;
