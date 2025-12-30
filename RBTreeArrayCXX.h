@@ -10,6 +10,17 @@
  * time complexity for insert, search, and delete operations, with performance
  * significantly exceeding that of std::map in many scenarios.
  * 
+ * Key Features:
+ * -------------
+ * - Contiguous memory layout for serialization and fast traversal
+ * - Efficient serialization to/from files or shared memory
+ * - Faster than std::map in insert, search, and delete operations
+ * - Support for user-defined types and STL containers as key/value types
+ * - In-place construction/destruction via placement new
+ * - Memory shrinkage and resize operations
+ * - Two iterator types: unordered (fast) and ordered (key-sorted)
+ * - Conditional deletion with configurable predicates
+ * 
  * Speed Test: use g++ -O2
  * -----------------------
  * RBTreeArray16:
@@ -33,17 +44,6 @@
  *   Delete: RBTreeArray64<unsigned,unsigned>: 785 , std::map<unsigned,unsigned>: 1200 milliseconds
  *   Conditional Delete 1/3 keys: RBTreeArray64<unsigned,unsigned>: 252 , std::map<unsigned,unsigned>: 225 milliseconds
  *   Conditional Delete 1/10 keys: RBTreeArray64<unsigned,unsigned>: 134 , std::map<unsigned,unsigned>: 236 milliseconds
- * 
- * Key Features:
- * -------------
- * - Contiguous memory layout for serialization and fast traversal
- * - Efficient serialization to/from files or shared memory
- * - Faster than std::map in insert, search, and delete operations
- * - Support for user-defined types and STL containers as key/value types
- * - In-place construction/destruction via placement new
- * - Memory shrinkage and resize operations
- * - Two iterator types: unordered (fast) and ordered (key-sorted)
- * - Conditional deletion with configurable predicates
  * 
  * Capacity Limits:
  * ----------------
@@ -676,6 +676,11 @@ inline RBTreeArray<KeyType,ValueType,IndexType,BitLength>::RBTreeArray():RBTreeA
 
 template<typename KeyType,typename ValueType,typename IndexType,unsigned BitLength>
 inline RBTreeArray<KeyType,ValueType,IndexType,BitLength>::RBTreeArray(uint64_t size){
+	if(size>MaxNodeCount){
+		char buffer[1024];
+		sprintf(buffer,"RBTreeArray: attempt to create RBTreeArray%u with size %llu has exceed its capacity",bitLength,size);
+		throw std::out_of_range(buffer);
+	}
 	tree=CreateSize(size);
 }
 
@@ -684,6 +689,11 @@ inline RBTreeArray<KeyType,ValueType,IndexType,BitLength>::RBTreeArray(std::init
 	uint64_t size=initList.size();
 	if(size<LeastNodeCount){
 		size=LeastNodeCount;
+	}
+	if(size>MaxNodeCount){
+		char buffer[1024];
+		sprintf(buffer,"RBTreeArray: attempt to create RBTreeArray%u with size %llu has exceed its capacity",bitLength,size);
+		throw std::out_of_range(buffer);
 	}
 	tree=CreateSize(size);
 	for(const std::pair<KeyType,ValueType>& pair:initList){
@@ -1605,6 +1615,11 @@ inline bool RBTreeArray<KeyType,ValueType,IndexType,BitLength>::ReSize(uint64_t 
 	}
 	if(size==ArraySize()){
 		return true;
+	}
+	if(size>MaxNodeCount){
+		char buffer[1024];
+		sprintf(buffer,"RBTreeArray: attempt to create RBTreeArray%u with size %llu has exceed its capacity",bitLength,size);
+		throw std::out_of_range(buffer);
 	}
 	RBTree* newTree=CreateSize(size);
 	if(newTree){
