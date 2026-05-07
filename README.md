@@ -310,7 +310,7 @@ Usage example:
 ```C++
 RBTreeArray32<unsigned,double> tree32={{1,2},{3,4},{5,6}};
 RBTreeArray32<unsigned,double> tree32Steal;
-tree32Steal=std::move(tree32); // tree32Steal: {{1,2},{3,4},{5,6}}, tree32: {{1,2},{3,4},{5,6}}
+tree32Steal=std::move(tree32); // tree32Steal: {{1,2},{3,4},{5,6}}, tree32: {}
 ```
 
 # Iterator:
@@ -330,7 +330,7 @@ RBTreeArray32<std::string,std::vector<double>> tree;
 // ...
 for(auto iterator=tree.begin();iterator!=tree.end();++iterator){
     auto key=iterator.Key();
-    suto value=iterator.Value();
+    auto value=iterator.Value();
 }
 for(auto iterator=tree.begin();iterator!=tree.end();iterator++){
     // ...
@@ -359,7 +359,7 @@ RBTreeArray32<std::string,std::vector<double>> tree;
 // ...
 for(auto iterator=tree.begin();iterator!=tree.end();++iterator){
     auto key=iterator.Key();
-    suto value=iterator.Value();
+    auto value=iterator.Value();
 }
 ```
 
@@ -378,7 +378,7 @@ RBTreeArray32<std::string,std::vector<double>> tree;
 // ...
 for(auto iterator=tree.OrderedBegin();iterator!=tree.OrderedEnd();++iterator){
     auto key=iterator.Key();
-    suto value=iterator.Value();
+    auto value=iterator.Value();
 }
 for(auto iterator=tree.OrderedBegin();iterator!=tree.OrderedEnd();iterator++){
     // ...
@@ -395,6 +395,6 @@ RBTreeArray32<std::string,std::vector<double>> tree;
 // ...
 for(auto iterator=tree.OrderedBegin();iterator!=tree.OrderedEnd();++iterator){
     auto key=iterator.Key();
-    suto value=iterator.Value();
+    auto value=iterator.Value();
 }
 ```
